@@ -19,5 +19,6 @@ public class LiftOff implements Runnable {
         System.out.println("#" + id + ": Third message.");
         Thread.yield();
         System.out.println("#" + id + ": Finished.");
+        return;
     }
 }
