@@ -3,15 +3,29 @@ package com.lypgod.test.ThinkingInJava.Ch21.Practice9;//: concurrency/SimplePrio
 
 import java.util.concurrent.*;
 
+class PriorityThreadFactory implements ThreadFactory {
+    @Override
+    public Thread newThread(Runnable r) {
+        Thread t = new Thread(r);
+        return t;
+    }
+}
+
 public class SimplePriorities implements Runnable {
     private int countDown = 5;
     private volatile double d; // No optimization
+    private int priority;
+
+    public SimplePriorities(int priority) {
+        this.priority = priority;
+    }
 
     public String toString() {
         return Thread.currentThread() + ": " + countDown;
     }
 
     public void run() {
+        Thread.currentThread().setPriority(priority);
         while (true) {
             // An expensive, interruptable operation:
             for (int i = 1; i < 100000; i++) {
@@ -25,14 +39,10 @@ public class SimplePriorities implements Runnable {
     }
 
     public static void main(String[] args) {
-//        ExecutorService execmin = Executors.newCachedThreadPool(new PriorityThreadFactory(Thread.MIN_PRIORITY));
-////        ExecutorService execnorm = Executors.newCachedThreadPool(new PriorityThreadFactory(Thread.NORM_PRIORITY));
-////        ExecutorService execmax = Executors.newCachedThreadPool(new PriorityThreadFactory(Thread.MAX_PRIORITY));
-//        for (int i = 0; i < 5; i++) {
-//            execmin.execute(new PriorityThreadFactory(Thread.MIN_PRIORITY));
-//            execnorm.execute(new PriorityThreadFactory(Thread.NORM_PRIORITY));
-//        }
-//        exec.shutdown();
+        ExecutorService exec = Executors.newCachedThreadPool(new PriorityThreadFactory());
+        exec.execute(new SimplePriorities(Thread.MIN_PRIORITY));
+        exec.execute(new SimplePriorities(Thread.MAX_PRIORITY));
+        exec.shutdown();
     }
 } /* Output: (70% match)
 Thread[pool-1-thread-6,10,main]: 5
