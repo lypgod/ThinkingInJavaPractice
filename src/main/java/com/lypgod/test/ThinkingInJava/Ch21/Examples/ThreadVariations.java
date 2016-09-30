@@ -30,8 +30,8 @@ class InnerThread1 {
         }
     }
 
-    InnerThread1(String name) {
-        Inner inner = new Inner(name);
+    public InnerThread1(String name) {
+        new Inner(name);
     }
 }
 
@@ -39,8 +39,8 @@ class InnerThread1 {
 class InnerThread2 {
     private int countDown = 5;
 
-    InnerThread2(String name) {
-        Thread t = new Thread(name) {
+    public InnerThread2(String name) {
+        new Thread(name) {
             public void run() {
                 try {
                     while (true) {
@@ -56,8 +56,7 @@ class InnerThread2 {
             public String toString() {
                 return getName() + ": " + countDown;
             }
-        };
-        t.start();
+        }.start();
     }
 }
 
@@ -90,8 +89,8 @@ class InnerRunnable1 {
         }
     }
 
-    InnerRunnable1(String name) {
-        Inner inner = new Inner(name);
+    public InnerRunnable1(String name) {
+        new Inner(name);
     }
 }
 
@@ -99,8 +98,8 @@ class InnerRunnable1 {
 class InnerRunnable2 {
     private int countDown = 5;
 
-    InnerRunnable2(String name) {
-        Thread t = new Thread(new Runnable() {
+    public InnerRunnable2(String name) {
+        new Thread(new Runnable() {
             public void run() {
                 try {
                     while (true) {
@@ -117,8 +116,7 @@ class InnerRunnable2 {
                 return Thread.currentThread().getName() +
                         ": " + countDown;
             }
-        }, name);
-        t.start();
+        }, name).start();
     }
 }
 
@@ -128,11 +126,11 @@ class ThreadMethod {
     private Thread t;
     private String name;
 
-    ThreadMethod(String name) {
+    public ThreadMethod(String name) {
         this.name = name;
     }
 
-    void runTask() {
+    public void runTask() {
         if (t == null) {
             t = new Thread(name) {
                 public void run() {

@@ -12,10 +12,11 @@ public class FibonacciCallable implements Callable<String> {
         length = n;
     }
 
-    public String call() {
+    public String call() throws InterruptedException {
         Fibonacci gen = new Fibonacci();
         for(int i = 0; i < length; i++)
             result += gen.next() + " ";
+            Thread.sleep(3000);
         return result;
     }
 }
