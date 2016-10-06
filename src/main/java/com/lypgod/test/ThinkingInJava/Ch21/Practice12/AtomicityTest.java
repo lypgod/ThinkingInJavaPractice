@@ -1,11 +1,12 @@
-package com.lypgod.test.ThinkingInJava.Ch21.Examples;//: concurrency/AtomicityTest.java
+package com.lypgod.test.ThinkingInJava.Ch21.Practice12;//: concurrency/AtomicityTest.java
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class AtomicityTest implements Runnable {
     private int i = 0;
 
-    public int getValue() {
+    public synchronized int getValue() {
         return i;
     }
 
@@ -23,7 +24,7 @@ public class AtomicityTest implements Runnable {
         ExecutorService exec = Executors.newCachedThreadPool();
         AtomicityTest at = new AtomicityTest();
         for (int i = 0; i < 20; i++) {
-            exec.execute(at);
+            exec.execute(new AtomicityTest());
         }
         while (true) {
             int val = at.getValue();

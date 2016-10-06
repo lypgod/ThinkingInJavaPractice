@@ -1,4 +1,4 @@
-package com.lypgod.test.ThinkingInJava.Ch2;
+package com.lypgod.test.ThinkingInJava.Ch2.Practice1;
 
 import org.junit.Test;
 
