@@ -1,14 +1,5 @@
 package com.lypgod.test.ThinkingInJava.Ch8_Polymorphism.Practice1;
 
-/**
- * Created by liuyp on 16-10-9.
- */
-class Cycle {
-    void ride() {
-        System.out.println("Cycle ride.");
-    }
-}
-
 class Unicycle extends Cycle {
     @Override
     void ride() {
