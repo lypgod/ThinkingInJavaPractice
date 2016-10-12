@@ -23,7 +23,8 @@ public class Practice7 {
 
     public static void main(String[] args) {
         Practice7 practice7 = new Practice7();
-        practice7.new Inner().changeI();
+//        practice7.new Inner().changeI();
+        practice7.test();
         System.out.println(practice7.i);
     }
 }
