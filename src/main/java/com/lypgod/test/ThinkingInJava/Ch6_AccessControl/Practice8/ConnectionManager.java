@@ -13,10 +13,17 @@ public class ConnectionManager {
 
     static Connection getConnection() {
         Connection connection = null;
-        for (Connection c:connections) {
-            if (c != null) {
-                connection = c;
-                c = null;
+//        for (Connection c:connections) {
+//            if (c != null) {
+//                connection = c;
+//                c = null;
+//                break;
+//            }
+//        }
+        for (int i = connections.length - 1; i >= 0; i--) {
+            if (connections[i] != null) {
+                connection = connections[i];
+                connections[i] = null;
                 break;
             }
         }
