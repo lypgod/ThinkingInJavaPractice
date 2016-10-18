@@ -1,4 +1,4 @@
-package com.lypgod.test.ThinkingInJava.Ch14_TypeInformation.Practice4;//: typeinfo/Shapes.java
+package com.lypgod.test.ThinkingInJava.Ch14_TypeInformation.Practice5;//: typeinfo/Shapes.java
 
 abstract class Shape {
     void draw() {
@@ -33,9 +33,14 @@ class Rhomboid extends Shape {
 }
 
 public class Shapes {
+    private static void rotate(Shape shape) {
+        if (!(shape instanceof Circle)) {
+            System.out.println(shape + " rotated.");
+        }
+    }
     public static void main(String[] args) {
-        Shape shape = new Rhomboid();
-        if (shape instanceof Rhomboid) System.out.println(((Rhomboid) shape).toString());
-        if (shape instanceof Circle) System.out.println(((Circle) shape).toString());
+        for (Shape s: new Shape[] {new Circle(), new Square(), new Triangle(), new Rhomboid()}) {
+            rotate(s);
+        }
     }
 }
