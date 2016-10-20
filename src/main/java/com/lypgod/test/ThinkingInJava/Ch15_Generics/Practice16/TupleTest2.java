@@ -1,6 +1,6 @@
-package com.lypgod.test.ThinkingInJava.Ch15_Generics.Practice15;
+package com.lypgod.test.ThinkingInJava.Ch15_Generics.Practice16;
 
-import static com.lypgod.test.ThinkingInJava.Ch15_Generics.Practice15.Tuple.tuple;
+import static com.lypgod.test.ThinkingInJava.Ch15_Generics.Practice16.Tuple.tuple;
 
 class MyClass1 {
 
