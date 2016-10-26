@@ -133,8 +133,7 @@ public class Countries {
 
     // Use AbstractMap by implementing entrySet()
     private static class FlyweightMap extends AbstractMap<String, String> {
-        private static class Entry
-                implements Map.Entry<String, String> {
+        private static class Entry implements Map.Entry<String, String> {
             int index;
 
             Entry(int index) {
