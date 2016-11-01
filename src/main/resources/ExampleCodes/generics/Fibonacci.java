@@ -1,4 +1,4 @@
-package ExampleCodes.generics;//: generics/Fibonacci.java
+package ExampleCodes.generics;//: generics/FibonacciTest.java
 // Generate a Fibonacci sequence.
 import net.mindview.util.*;
 

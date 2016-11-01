@@ -1,27 +1,40 @@
 package com.lypgod.test.ThinkingInJava.Ch15_Generics.Practice7;
 
-import com.lypgod.test.ThinkingInJava.Ch21_Concurrency.Practice2.Generator;
-
 import java.util.Iterator;
+
+interface Generator<T> {
+    T next();
+}
 
 public class Fibonacci implements Generator<Integer>, Iterable<Integer> {
     private int count = 0;
     private int m;
-
-    public Integer next() {
-        return fib(count++);
-    }
-
-    private int fib(int n) {
-        if (n < 2) return 1;
-        return fib(n - 2) + fib(n - 1);
-    }
 
     public Fibonacci() {
     }
 
     public Fibonacci(int m) {
         this.m = m;
+    }
+
+    public static void main(String[] args) {
+        Fibonacci gen = new Fibonacci();
+        for (int i = 0; i < 18; i++)
+            System.out.print(gen.next() + " ");
+        System.out.println();
+        Iterator it = new Fibonacci(20).iterator();
+        while (it.hasNext())
+            System.out.print(it.next() + " ");
+    }
+
+    public Integer next() {
+        return fib(count++);
+    }
+
+    private int fib(int n) {
+        if (n < 2)
+            return 1;
+        return fib(n - 2) + fib(n - 1);
     }
 
     public Iterator<Integer> iterator() {
@@ -39,16 +52,6 @@ public class Fibonacci implements Generator<Integer>, Iterable<Integer> {
                 throw new UnsupportedOperationException();
             }
         };
-    }
-
-    public static void main(String[] args) {
-        Fibonacci gen = new Fibonacci();
-        for (int i = 0; i < 18; i++)
-            System.out.print(gen.next() + " ");
-        System.out.println();
-        Iterator it = new Fibonacci(20).iterator();
-        while (it.hasNext())
-            System.out.print(it.next() + " ");
     }
 
 }

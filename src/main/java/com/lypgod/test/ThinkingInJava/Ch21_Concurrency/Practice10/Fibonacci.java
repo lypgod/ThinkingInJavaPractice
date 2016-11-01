@@ -1,4 +1,4 @@
-package com.lypgod.test.ThinkingInJava.Ch21_Concurrency.Practice2;//: generics/FibonacciTest.java
+package com.lypgod.test.ThinkingInJava.Ch21_Concurrency.Practice10;//: generics/FibonacciTest.java
 
 // Generate a Fibonacci sequence.
 interface Generator<T> {

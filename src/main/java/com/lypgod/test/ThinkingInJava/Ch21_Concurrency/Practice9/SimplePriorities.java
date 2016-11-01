@@ -6,14 +6,12 @@ import java.util.concurrent.*;
 class PriorityThreadFactory implements ThreadFactory {
     @Override
     public Thread newThread(Runnable r) {
-        Thread t = new Thread(r);
-        return t;
+        return new Thread(r);
     }
 }
 
 public class SimplePriorities implements Runnable {
     private int countDown = 5;
-    private volatile double d; // No optimization
     private int priority;
 
     public SimplePriorities(int priority) {
@@ -29,7 +27,6 @@ public class SimplePriorities implements Runnable {
         while (true) {
             // An expensive, interruptable operation:
             for (int i = 1; i < 100000; i++) {
-                d += (Math.PI + Math.E) / (double) i;
                 if (i % 1000 == 0)
                     Thread.yield();
             }

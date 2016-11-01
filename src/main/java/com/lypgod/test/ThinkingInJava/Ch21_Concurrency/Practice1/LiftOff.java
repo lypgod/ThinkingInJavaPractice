@@ -11,6 +11,13 @@ public class LiftOff implements Runnable {
         System.out.println("#" + id + ": Constructed.");
     }
 
+    public static void main(String[] args) {
+        for (int i = 0; i < 20; i++) {
+            new Thread(new LiftOff()).start();
+        }
+        System.out.println("Starting");
+    }
+
     public void run() {
         System.out.println("#" + id + ": First message.");
         Thread.yield();
@@ -19,6 +26,5 @@ public class LiftOff implements Runnable {
         System.out.println("#" + id + ": Third message.");
         Thread.yield();
         System.out.println("#" + id + ": Finished.");
-        return;
     }
 }
