@@ -4,13 +4,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class AtomicityTest implements Runnable {
-    private int i = 0;
+    private volatile int i = 0;
 
-    public synchronized int getValue() {
+    public int getValue() {
         return i;
     }
 
-    private synchronized void evenIncrement() {
+    private void evenIncrement() {
         i++;
         i++;
     }

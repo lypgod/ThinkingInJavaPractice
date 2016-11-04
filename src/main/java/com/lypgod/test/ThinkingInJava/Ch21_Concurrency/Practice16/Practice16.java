@@ -1,68 +1,90 @@
-package com.lypgod.test.ThinkingInJava.Ch21_Concurrency.Practice15;
+package com.lypgod.test.ThinkingInJava.Ch21_Concurrency.Practice16;
 
-class SyncTest1 { // all methods synchronized on this
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+class SyncTest1 {
+    private Lock lock = new ReentrantLock();
     public void f1() {
-        synchronized (this) {
+        lock.lock();
+        try{
             for (int i = 0; i < 500; i++) {
                 System.out.println("f1()");
                 Thread.yield();
             }
+        } finally {
+            lock.unlock();
         }
     }
 
     void g1() {
-        synchronized (this) {
+        lock.lock();
+        try{
             for (int i = 0; i < 500; i++) {
                 System.out.println("g1()");
                 Thread.yield();
             }
+        } finally {
+            lock.unlock();
         }
     }
 
     void h1() {
-        synchronized (this) {
+        lock.lock();
+        try{
             for (int i = 0; i < 500; i++) {
                 System.out.println("h1()");
                 Thread.yield();
             }
+        } finally {
+            lock.unlock();
         }
     }
 }
 
 class SyncTest2 { // methods synchronized on different objects
-    private final Object syncObject1 = new Object();
-    private final Object syncObject2 = new Object();
-    private final Object syncObject3 = new Object();
+    private Lock lock1 = new ReentrantLock();
+    private Lock lock2 = new ReentrantLock();
+    private Lock lock3 = new ReentrantLock();
 
     public void f2() {
-        synchronized (syncObject1) {
+        lock1.lock();
+        try{
             for (int i = 0; i < 500; i++) {
                 System.out.println("f2()");
                 Thread.yield();
             }
+        } finally {
+            lock1.unlock();
         }
     }
 
     void g2() {
-        synchronized (syncObject2) {
+        lock2.lock();
+        try{
             for (int i = 0; i < 500; i++) {
                 System.out.println("g2()");
                 Thread.yield();
             }
+        } finally {
+            lock2.unlock();
         }
     }
 
     void h2() {
-        synchronized (syncObject3) {
+        lock3.lock();
+        try{
             for (int i = 0; i < 500; i++) {
                 System.out.println("h2()");
                 Thread.yield();
             }
+        } finally {
+            lock3.unlock();
         }
     }
 }
 
-public class Practice15 {
+public class Practice16 {
     public static void main(String[] args) {
         final SyncTest1 st1 = new SyncTest1();
         final SyncTest2 st2 = new SyncTest2();
